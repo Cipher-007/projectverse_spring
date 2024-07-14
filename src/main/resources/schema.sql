@@ -1,0 +1,15 @@
+CREATE TABLE project (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    priority VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE task (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    priority VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    project_id BIGINT,
+    FOREIGN KEY (project_id) REFERENCES project(id)
+);
