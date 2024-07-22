@@ -4,12 +4,14 @@ import com.example.projectverse.entity.Project;
 import com.example.projectverse.exception.ResourceNotFoundException;
 import com.example.projectverse.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/projects")
+@PreAuthorize("hasRole('ADMIN')")
 public class ProjectController {
 
     @Autowired

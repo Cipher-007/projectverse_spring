@@ -26,7 +26,22 @@ public class ProjectServiceImp implements ProjectService {
         return projectRepository.save(project);
     }
 
+    public Project updateProject(Long id, Project projectDetails) {
+        Optional<Project> project = projectRepository.findById(id);
+        if (project.isPresent()) {
+            Project existingProject = project.get();
+            existingProject.setName(projectDetails.getName());
+            existingProject.setDescription(projectDetails.getDescription());
+            existingProject.setPriority(projectDetails.getPriority());
+            existingProject.setStatus(projectDetails.getStatus());
+            return projectRepository.save(existingProject);
+        }
+        return null;
+    }
+
     public void deleteProject(Long id) {
-        projectRepository.deleteById(id);
+        if (projectRepository.existsById(id)) {
+            projectRepository.deleteById(id);
+        }
     }
 }

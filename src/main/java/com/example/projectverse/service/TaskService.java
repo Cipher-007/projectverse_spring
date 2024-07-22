@@ -1,6 +1,6 @@
 package com.example.projectverse.service;
 
-import com.example.projectverse.dta.TaskDTO;
+import com.example.projectverse.dto.TaskDTO;
 import com.example.projectverse.entity.Task;
 
 import java.util.List;

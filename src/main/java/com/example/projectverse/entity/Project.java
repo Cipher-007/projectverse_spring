@@ -23,6 +23,9 @@ public class Project {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "priority")
     @Enumerated(EnumType.STRING)
     private Priority priority;

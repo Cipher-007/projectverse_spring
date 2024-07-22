@@ -1,6 +1,6 @@
 package com.example.projectverse.service;
 
-import com.example.projectverse.dta.TaskDTO;
+import com.example.projectverse.dto.TaskDTO;
 import com.example.projectverse.entity.Task;
 import com.example.projectverse.entity.Project;
 import com.example.projectverse.exception.ResourceNotFoundException;
@@ -49,7 +49,23 @@ public class TaskServiceImp implements TaskService {
         return taskRepository.save(task);
     }
 
+    public Task updateTask(Long id, Task taskDetails) {
+        Optional<Task> task = taskRepository.findById(id);
+        if (task.isPresent()) {
+            Task existingTask = task.get();
+            existingTask.setName(taskDetails.getName());
+            existingTask.setDescription(taskDetails.getDescription());
+            existingTask.setPriority(taskDetails.getPriority());
+            existingTask.setStatus(taskDetails.getStatus());
+            existingTask.setProject(taskDetails.getProject());
+            return taskRepository.save(existingTask);
+        }
+        return null;
+    }
+
     public void deleteTask(Long id) {
-        taskRepository.deleteById(id);
+        if (taskRepository.existsById(id)) {
+            taskRepository.deleteById(id);
+        }
     }
 }
